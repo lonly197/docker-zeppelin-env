@@ -1,5 +1,7 @@
 FROM lonly/docker-alpine-java
+
 FROM lonly/docker-alpine-r
+
 FROM python:2-alpine3.6
 
 ARG VERSION=0.7.3
@@ -23,6 +25,8 @@ LABEL \
 
 # Install packages
 RUN	set -x \
+    ## Install base package
+    && apk add --no-cache --upgrade build-base gfortran python2-dev python2-tkinter freetype-dev libpng-dev lapack-dev libxml2-dev libxslt-dev jpeg-dev \
     ## Install python related package
     && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \ 
     ## Cleanup
