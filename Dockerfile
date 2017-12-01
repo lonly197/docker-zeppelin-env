@@ -1,6 +1,6 @@
-FROM python:2-alpine3.6
 FROM lonly/docker-alpine-java
 FROM lonly/docker-alpine-r
+FROM python:2-alpine3.6
 
 ARG VERSION=0.7.3
 ARG BUILD_DATE
