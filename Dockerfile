@@ -25,10 +25,15 @@ LABEL \
 
 # Install packages
 RUN	set -x \
+    # Add alpine repo
+    && echo http://mirrors.aliyun.com/alpine/v3.6/main/ >> /etc/apk/repositories \
+    && echo http://mirrors.aliyun.com/alpine/v3.6/community/ >> /etc/apk/repositories \
+    ## Update apk package
+    && apk update \
     ## Install base package
     && apk add --no-cache --upgrade build-base gfortran python2-dev python2-tkinter freetype-dev libpng-dev lapack-dev libxml2-dev libxslt-dev jpeg-dev \
     ## Install python related package
-    && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \ 
+    && pip install --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \ 
     ## Cleanup
     && rm -rf *.tgz *.tar *.zip \
     && rm -rf /var/cache/apk/* \
